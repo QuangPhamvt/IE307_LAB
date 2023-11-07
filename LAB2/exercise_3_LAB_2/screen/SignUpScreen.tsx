@@ -1,4 +1,4 @@
-import { AntDesign, Feather } from "@expo/vector-icons"
+import { AntDesign, Feather, FontAwesome5 } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import {
 	SafeAreaView,
@@ -12,7 +12,9 @@ export const SignUpScreen = () => {
 	return (
 		<SafeAreaView>
 			<View className="flex items-center justify-center w-full h-full px-8 space-y-4">
-				<View className="w-20 h-20 rounded-full bg-slate-500"></View>
+				<View className="flex items-center justify-center w-20 h-20 bg-black rounded-full">
+					<FontAwesome5 name="react" size={52} color="#61dbfb" />
+				</View>
 				<View>
 					<Text className="text-2xl font-bold">Create New Account</Text>
 				</View>

@@ -1,5 +1,5 @@
 import { SafeAreaView, View } from "react-native"
-import React from "react"
+import React, { useContext } from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { NavigationContainer } from "@react-navigation/native"
 import { RootNativeStackParamList } from "./screen/types"
@@ -8,25 +8,63 @@ import { HomeScreen } from "./screen/HomeScreen"
 type AppProps = {
 	children: React.ReactNode
 }
-type AppContextProps = {}
-const AppContext = React.createContext<AppContextProps | null>(null)
+type AppContextProps = {
+	data: {
+		email: string
+		password: string
+	}[]
+	isLoggedIn: "idle" | "success" | "hasError"
+	setIsLoggedIn: React.Dispatch<
+		React.SetStateAction<"idle" | "success" | "hasError">
+	>
+}
+export const AppContext = React.createContext<AppContextProps | null>(null)
 const AppContextProvider: React.FC<AppProps> = (props) => {
 	const { children } = props
-	return <AppContext.Provider value={{}}>{children}</AppContext.Provider>
+	const [isLoggedIn, setIsLoggedIn] = React.useState<
+		"idle" | "success" | "hasError"
+	>("idle")
+	return (
+		<AppContext.Provider
+			value={{
+				data: [
+					{
+						email: `21522517@gm.uit.edu.vn`,
+						password: `123456`,
+					},
+				],
+				isLoggedIn,
+				setIsLoggedIn,
+			}}>
+			{children}
+		</AppContext.Provider>
+	)
 }
 const Stack = createNativeStackNavigator<RootNativeStackParamList>()
 export default function App() {
 	return (
 		<AppContextProvider>
-			<NavigationContainer>
-				<Stack.Navigator
-					initialRouteName="Home"
-					screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="LogIn" component={LogInScreen} />
-					<Stack.Screen name="SignUp" component={SignUpScreen} />
-					<Stack.Screen name="Home" component={HomeScreen} />
-				</Stack.Navigator>
-			</NavigationContainer>
+			<Screen />
 		</AppContextProvider>
+	)
+}
+
+const Screen = () => {
+	const appContext = React.useContext(AppContext)
+	return (
+		<NavigationContainer>
+			<Stack.Navigator
+				screenOptions={{ headerShown: false }}
+				initialRouteName="LogIn">
+				{appContext?.isLoggedIn === "success" ? (
+					<Stack.Screen name="HomeScreen" component={HomeScreen} />
+				) : (
+					<>
+						<Stack.Screen name="LogIn" component={LogInScreen} />
+						<Stack.Screen name="SignUp" component={SignUpScreen} />
+					</>
+				)}
+			</Stack.Navigator>
+		</NavigationContainer>
 	)
 }

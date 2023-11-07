@@ -20,7 +20,7 @@ export const HomeScreen = () => {
 								<AntDesign
 									name="home"
 									size={24}
-									color={focused ? "blue" : ""}
+									color={focused ? "blue" : "black"}
 								/>
 							</View>
 						)
@@ -30,7 +30,7 @@ export const HomeScreen = () => {
 								<AntDesign
 									name="appstore1"
 									size={24}
-									color={focused ? "blue" : ""}
+									color={focused ? "blue" : "black"}
 								/>
 							</View>
 						)
@@ -40,7 +40,7 @@ export const HomeScreen = () => {
 								<Octicons
 									name="heart-fill"
 									size={24}
-									color={focused ? "blue" : ""}
+									color={focused ? "blue" : "black"}
 								/>
 							</View>
 						)
@@ -50,7 +50,7 @@ export const HomeScreen = () => {
 								<FontAwesome
 									name="user"
 									size={24}
-									color={focused ? "blue" : ""}
+									color={focused ? "blue" : "black"}
 								/>
 							</View>
 						)

@@ -6,7 +6,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 
 export type RootNativeStackParamList = {
-	Home: NavigatorScreenParams<HomeTabParamsList>
+	HomeScreen: NavigatorScreenParams<HomeTabParamsList>
 	LogIn: undefined
 	SignUp: undefined
 }
