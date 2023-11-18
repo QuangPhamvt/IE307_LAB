@@ -1,3 +1,4 @@
+// PHAM MINH QUANG MSSV:21522517
 import { SafeAreaView, View } from "react-native"
 import React, { useContext } from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
