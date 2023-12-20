@@ -19,7 +19,7 @@ const useLogIn = () => {
 		try {
 			let user
 			if (!username || !password)
-				throw { data: { message: "Username or password is empty" } }
+				throw { data: "Username or password is empty" }
 			const { data } = await AuthApi.postLogin({ username, password })
 			const decode = jwtDecode(data.token)
 			if (decode.sub) {
@@ -27,7 +27,7 @@ const useLogIn = () => {
 				setUser({ state: "hasValue", ...data })
 			}
 		} catch (error: any) {
-			alert(error.data.message)
+			alert(error.data)
 		}
 	}
 	return { onLogIn }
