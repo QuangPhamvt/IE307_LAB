@@ -1,9 +1,7 @@
+//PHAM MINH QUANG MSSV 21522517
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs"
 import { DrawerScreenProps } from "@react-navigation/drawer"
-import {
-	MaterialTopTabBarProps,
-	MaterialTopTabScreenProps,
-} from "@react-navigation/material-top-tabs"
+import { MaterialTopTabScreenProps } from "@react-navigation/material-top-tabs"
 import {
 	CompositeScreenProps,
 	NavigatorScreenParams,

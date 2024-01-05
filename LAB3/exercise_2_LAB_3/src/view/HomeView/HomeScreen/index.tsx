@@ -1,11 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import {
-	SafeAreaView,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	View,
-} from "react-native"
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native"
 import { HomeNativeStackParamList } from "../../type"
 import { MainHomeScreen } from "./components/MainHomScreenComponent"
 import { NoteAppHomeScreen } from "./components/NoteAppHomeScreenComponent"

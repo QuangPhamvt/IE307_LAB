@@ -1,5 +1,5 @@
+//PHAM MINH QUANG mssv: 21522517
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios"
-
 // Boot Instance
 const axiosClient = axios.create({
 	// `baseURL` will be prepended to `url` unless `url` is absolute.
@@ -7,7 +7,6 @@ const axiosClient = axios.create({
 	// to methods of that instance.
 	baseURL: "https://fakestoreapi.com/",
 })
-
 // Setup Interceptors
 // Interceptor Request
 const onRequest = async (config: any) => {
@@ -36,6 +35,5 @@ const setupInterceptors = (axiosInstance: AxiosInstance) => {
 	axiosInstance.interceptors.response.use(onResponse, onResponseError)
 	return axiosInstance
 }
-
 setupInterceptors(axiosClient)
 export { axiosClient }
