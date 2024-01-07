@@ -3,7 +3,7 @@ import {
 	createStackNavigator,
 } from "@react-navigation/stack"
 import React from "react"
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native"
+import { TouchableOpacity } from "react-native"
 import { MediaStackParamList } from "../../type"
 import MyGallery from "./components/MyGallery"
 import RecordVideo from "./components/RecordVideo"

@@ -6,15 +6,19 @@ import {
 import MainStack from "./components/MainStack"
 import AddPlaces from "./components/AddPlaces"
 import { PlacesStackParamList } from "../../type"
-import { Text, TouchableOpacity, View } from "react-native"
+import {  TouchableOpacity, View } from "react-native"
 import { AntDesign } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
-import { useRecoilValue } from "recoil"
-import { locationState } from "../../store/atom"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { locationState, selectLocationState } from "../../store/atom"
+import MapStack from "./components/MapStack"
+import OriginPlaces from "./components/OriginPlaces"
+import MapOriginPlaces from "./components/MapOriginPlaces"
 
 const Stack = createStackNavigator<PlacesStackParamList>()
 const PlacesBottomTab = () => {
-	const location = useRecoilValue(locationState)
+	const [location, setLocation]= useRecoilState(locationState)
+  const selectLocation = useRecoilValue(selectLocationState)
 	const navigation =
 		useNavigation<StackNavigationProp<PlacesStackParamList, "MainPlaces">>()
 	React.useEffect(() => {
@@ -48,6 +52,27 @@ const PlacesBottomTab = () => {
 				name="AddNewPlace"
 				component={AddPlaces}
 			/>
+      <Stack.Screen
+				options={{
+					headerTitle: "Map",
+					headerBackTitle: "Add a new place",
+					headerRight: () => (
+						<TouchableOpacity 
+              onPress={() => {
+                if(selectLocation)
+                setLocation(selectLocation)
+                navigation.navigate("AddNewPlace")
+              }}
+            >
+							<View className="pr-2">
+								<AntDesign name="save" size={24} />
+							</View>
+						</TouchableOpacity>
+					),
+				}}
+        name="MapPlaces" component={MapStack}/>
+      <Stack.Screen name="OriginPlaces" component={OriginPlaces}/>
+      <Stack.Screen name="MapOrignPlaces" component={MapOriginPlaces}/>
 		</Stack.Navigator>
 	)
 }

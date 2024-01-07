@@ -11,6 +11,9 @@ export type RootNativeStackParamList = {
 export type PlacesStackParamList = {
 	MainPlaces: undefined
 	AddNewPlace: undefined
+  MapPlaces: undefined
+  OriginPlaces: {id: string, image: string, latitude: number, longitude: number, title: string}
+  MapOrignPlaces: {latitude: number, longitude: number}
 }
 export type MediaStackParamList = {
 	MainMedia: undefined

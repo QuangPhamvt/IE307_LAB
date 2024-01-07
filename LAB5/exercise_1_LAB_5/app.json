@@ -30,8 +30,23 @@
 				"expo-location",
 				{
 					"locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-				}
-			]
+				},
+			], 
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./local/assets/notification-sound.wav",
+            "./local/assets/notification-sound-other.wav"
+          ]
+        }
+      ]
 		]
 	}
 }

@@ -2,23 +2,32 @@ import { View, Text, SafeAreaView, TouchableOpacity, Image } from "react-native"
 import React from "react"
 import { TextInput } from "react-native-gesture-handler"
 import { Entypo } from "@expo/vector-icons"
-import { useGetImageToUp } from "../../../store/hook"
+import { useAddPlaces, useGetImageToUp } from "../../../store/hook"
 import { useRecoilState, useRecoilValue } from "recoil"
 import {
 	imageSelectedState,
 	inputTitleState,
 	locationState,
 } from "../../../store/atom"
-import MapView, { Marker, Region } from "react-native-maps"
+import MapView, { Marker } from "react-native-maps"
+import { useNavigation } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { PlacesStackParamList } from "../../../type"
+
+
+
 
 const AddPlaces = () => {
+  const navigation = useNavigation<StackNavigationProp<PlacesStackParamList, "AddNewPlace">>()
 	const { onGetImageToUp } = useGetImageToUp()
+  const {onAddPlaces} = useAddPlaces()
 	const imageLib = useRecoilValue(imageSelectedState)
 	const [location, setLocation] = useRecoilState(locationState)
 	const [inputTitle, setInputTitle] = useRecoilState(inputTitleState)
 	const handleSelectImageLib = () => onGetImageToUp(true)
 	const handleSelectImageCamera = () => onGetImageToUp(false)
 	if (!location?.coords) return
+
 	return (
 		<SafeAreaView className="">
 			<View className="flex w-full px-2 space-y-2">
@@ -61,7 +70,6 @@ const AddPlaces = () => {
 							longitudeDelta: 0.005,
 						}}>
 						<Marker
-							draggable
 							onDragEnd={(e) =>
 								setLocation((preState) => {
 									if (!preState) return null
@@ -84,13 +92,15 @@ const AddPlaces = () => {
 						<Entypo name="location" size={16} color={"#3b82f6"} />
 						<Text className="font-bold text-blue-500">Locate User</Text>
 					</TouchableOpacity>
-					<View className="flex flex-row items-center p-2 space-x-2 border border-blue-500 border-solid">
+					<TouchableOpacity onPress={() => {navigation.navigate("MapPlaces")}} className="flex flex-row items-center p-2 space-x-2 border border-blue-500 border-solid">
 						<Entypo name="map" size={16} color={"#3b82f6"} />
 						<Text className="font-bold text-blue-500">Pick on Map</Text>
-					</View>
+					</TouchableOpacity>
 				</View>
 
-				<TouchableOpacity className="flex items-center justify-center w-full h-10 p-1 bg-blue-500">
+				<TouchableOpacity 
+          onPress={ onAddPlaces}
+          className="flex items-center justify-center w-full h-10 p-1 bg-blue-500">
 					<Text className="font-medium text-white">Add Places</Text>
 				</TouchableOpacity>
 			</View>
